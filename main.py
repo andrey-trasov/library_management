@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from config.config_bd import engine, Base
 from contextlib import asynccontextmanager
 
+from routers import author_router
 
 # Создание всех таблиц в базе данных
 Base.metadata.create_all(bind=engine)
@@ -28,6 +29,6 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-# app.include_router(author_router.router)
+app.include_router(author_router.router)
 # app.include_router()
 # app.include_router()
